@@ -1,0 +1,10 @@
+{
+  "apps" : [
+    {
+      "name"      : "myblog",
+      "script"    : "npx",
+      "interpreter": "none",
+      "args": "serve -p 80 build"
+    }
+  ]
+}
