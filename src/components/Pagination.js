@@ -2,9 +2,8 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
-class Pagination extends React.Component{
-  render(){
-    const { classes } = this.props
+const Pagination = (props) => {
+  const { classes } = props
     return (  
       <Grid container className={classes.paginationRoot} justify="center">
         {[1,2,3,4,5].map((i, d) => (
@@ -18,7 +17,6 @@ class Pagination extends React.Component{
         ))}
       </Grid>
     )
-  }
 }
 
 const styles = {

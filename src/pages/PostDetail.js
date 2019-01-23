@@ -8,21 +8,26 @@ import PostDetailComponent from '../components/PostDetail'
 
 class PostDetail extends React.Component{
   render(){
-
     const { classes } = this.props
-
     return (  
       <Grid className={classes.root}>
         <AppBar />
-        <PostDetailComponent />
+        <div className={classes.postDetailWrapper}>
+          <PostDetailComponent />
+        </div>
       </Grid>
     )
   }
 }
 
-const styles = {
+const styles = {  
   root: {
     height : "100vh"
+  },
+  postDetailWrapper: {
+    maxWidth: "960px", 
+    margin: "0 auto",
+    padding: "15px 10px 15px 10px",
   }
 }
 
