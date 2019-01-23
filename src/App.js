@@ -1,11 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom"
-import Home from './components/Home'
-// import Testing from './components/Testing'
+import Home from './pages/Home'
+import PostDetail from './pages/PostDetail'
 
 import "./app.css"
-
-const About = () => <h2>About</h2>
 
 const AppRouter = () => (
   <Router>
@@ -27,7 +25,7 @@ const AppRouter = () => (
 
       <Route path="/" exact component={Home} />
       {/* <Route path="/" exact component={Testing} /> */}
-      <Route path="/about/" component={About} />
+      <Route path="/post" component={PostDetail} />
 
     </div>
   </Router>
