@@ -2,11 +2,11 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
-const Tag = (props) => {
+const Filter = (props) => {
   const {classes} = props
   return (
-    <Grid container>
-      {['#tutorial','#coding','#curhat'].map((d) => (
+    <Grid container justify="center">
+      {['#tutorial','#coding', 'javascript', '#curhat'].map((d) => (
         <Grid item>
           <div className={classes.postTag}>
             <p className={classes.postTagTitle}>{d}</p>
@@ -17,17 +17,20 @@ const Tag = (props) => {
   )
 }
 
-const styles = {
+const styles = { 
   postTag: {
-    backgroundColor: "#d4d4d4",
+    backgroundColor: "#f4f4f4",
     marginRight: "5px",
     padding: "2px 10px 2px 10px",
     borderRadius: "50px",
-    cursor: "pointer"
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#d4d4d4",
+    }
   },
   postTagTitle: {
-    fontSize: "13px"
+    fontSize: "20px"
   },
 }
 
-export default withStyles(styles)(Tag);
+export default withStyles(styles)(Filter)
