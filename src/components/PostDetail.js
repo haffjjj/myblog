@@ -3,17 +3,16 @@ import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Dot from './Dot'
 import Tag from './Tag'
+// import { ResponsiveImage, ResponsiveImageSize } from 'react-responsive-image'
 
 const PostDetail = (props) => {
   const {classes} = props
     return (
       <Grid container className={classes.postDetailRoot}>
-        <Grid item md={12} className={classes.postDetailTitleImageRoot}>
-          <div className={classes.postDetailTitleImage} style={ { backgroundImage: 'url("https://i.pinimg.com/originals/8f/d3/c4/8fd3c464bf35e59e6294ab3837c22ba7.jpg")' } }>
-
-          </div>
+        <Grid item className={classes.postDetailTitleImageRoot}>
+          <img className={classes.postDetailTitleImage} src="https://i.pinimg.com/originals/8f/d3/c4/8fd3c464bf35e59e6294ab3837c22ba7.jpg" alt="new"/>
         </Grid>
-        <Grid item md={12}>
+        <Grid item>
           <div>
             <h2 className={classes.postDetailTitle}>Hello, iam web developer</h2>
             <Tag />
@@ -41,11 +40,12 @@ const styles = {
     borderRadius: "5px",
   },
   postDetailTitleImageRoot: {
-    marginBottom: "20px"
+    marginBottom: "20px",
+    flexGrow: 1
   },
   postDetailTitleImage: {
-    width: "100%",
-    height: "450px",
+    maxWidth: "100%",
+    height: "auto",
     backgroundColor: "#545454",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",

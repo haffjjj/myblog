@@ -5,9 +5,12 @@ import Grid from '@material-ui/core/Grid'
 const Filter = (props) => {
   const {classes} = props
   return (
-    <Grid container justify="center">
-      {['#tutorial','#coding', 'javascript', '#curhat'].map((d) => (
-        <Grid item>
+    <Grid container justify="center" alignItems="center" style={{overflow: "auto", whiteSpace: 'nowrap'}}>
+      {/* <Grid>
+        <p className={classes.postTagFilterTitle}>Filter : </p>
+      </Grid> */}
+      {['#tutorial','#coding', 'javascript'].map((d) => (
+        <Grid>
           <div className={classes.postTag}>
             <p className={classes.postTagTitle}>{d}</p>
           </div>
@@ -18,6 +21,9 @@ const Filter = (props) => {
 }
 
 const styles = { 
+  postTagFilterTitle: {
+    marginRight: "10px"
+  },
   postTag: {
     backgroundColor: "#f4f4f4",
     marginRight: "5px",
@@ -26,7 +32,8 @@ const styles = {
     cursor: "pointer",
     "&:hover": {
       backgroundColor: "#d4d4d4",
-    }
+    },
+    marginBottom: "10px"
   },
   postTagTitle: {
     fontSize: "20px"
