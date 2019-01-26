@@ -9,15 +9,15 @@ const AppBar = (props) => {
       <div className={classes.appBar}>
         <Grid container className={classes.appBarRoot}>
             <Grid container>
-              <Grid item md={3}>
+              <Grid item md={3} sm={12} xs={12}>
                 <Grid item >
                   <h3 className={classes.appBarTitleText}>Syafie.id</h3>
                 </Grid>
               </Grid>
 
-              <Grid item md={9}>
+              <Grid item md={9} sm={12} xs={12}>
                 <Grid className={classes.appBarMainRoot} container alignItems="center" justify="flex-end">
-                  <Grid item>
+                  <Grid item className={classes.appBarMainWrapper}>
                     <Button className={classes.appBarMainButton} color="primary">Home</Button>
                     <Button className={classes.appBarMainButton} color="primary">Portofolio</Button>
                     <Button className={classes.appBarMainButton} color="primary">About</Button>
@@ -30,7 +30,7 @@ const AppBar = (props) => {
     )
 } 
 
-const styles = {
+const styles = theme => ({
   appBar: {
     backgroundColor: "#1b1b1b",
   },
@@ -42,10 +42,20 @@ const styles = {
   },
   appBarTitleText: {
     color: "white",
-    fontSize: "25px"
+    fontSize: "25px",
+    [theme.breakpoints.down('sm')]: {
+      textAlign: "center"
+    }
   },
   appBarMainRoot: {
-    flexGrow: 1
+    flexGrow: 1,
+    margin: "auto"
+   
+  },
+  appBarMainWrapper: {
+     [theme.breakpoints.down('sm')]: {
+      margin: "10px auto 0px auto"
+    }
   },
   appBarMainButton: {
     color: "white"
@@ -59,6 +69,6 @@ const styles = {
   linearProgressBarColorPrimary: {
     backgroundColor: "#545454"
   }
-}
+})
 
 export default withStyles(styles)(AppBar);
