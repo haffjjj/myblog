@@ -3,10 +3,32 @@ import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Dot from './Dot'
 import Tag from './Tag'
-// import { ResponsiveImage, ResponsiveImageSize } from 'react-responsive-image'
 
-const PostDetail = (props) => {
-  const {classes} = props
+class PostDetail extends React.Component{
+
+  state = {
+    window: {
+      height: 0,
+      width: 0
+    }
+  }
+
+  componentDidMount = () => {
+    this.handleResize()
+    window.addEventListener('resize', this.handleResize)
+  }
+
+  handleResize = () => {
+    this.setState({
+      window: {
+        height: window.innerHeight,
+        width: window.innerWidth
+      }
+    })
+  }
+
+  render() {
+    const {classes} = this.props
     return (
       <Grid container className={classes.postDetailRoot}>
         <Grid item className={classes.postDetailTitleImageRoot}>
@@ -32,7 +54,8 @@ const PostDetail = (props) => {
         </Grid>
       </Grid>
     )
-} 
+  }
+}
 
 const styles = {
   postDetailRoot: {
@@ -41,16 +64,16 @@ const styles = {
   },
   postDetailTitleImageRoot: {
     marginBottom: "20px",
-    flexGrow: 1
+    flexGrow: 1,
   },
   postDetailTitleImage: {
-    maxWidth: "100%",
+    width: "100%",
     height: "auto",
     backgroundColor: "#545454",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    borderRadius: "2px"
+    borderRadius: "2px",
   },
   postDetailTitle: {
     fontSize: "30px",
