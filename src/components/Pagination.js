@@ -2,35 +2,65 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
-const Pagination = (props) => {
-  const { classes } = props
+class Pagination extends React.Component{
+
+  state = {
+    pagination: {
+      activePage: 1,
+      itemCountPerPage: [],
+      perPage: 5,
+      totalItemCount: 50
+    }
+  }
+
+  handleActivePage = (activePage) => {
+    this.setState({
+      pagination: {
+        ...this.state.pagination,
+        activePage
+      }
+    })
+  }
+
+  filltemCountPerPage = () => {
+    const { pagination } = this.state
+
+    let itemCountPerPage = []
+    for (let i = 0; i < pagination.totalItemCount / pagination.perPage; i++) {
+      itemCountPerPage.push(i + 1)
+    }
+
+    this.setState({
+      pagination: {
+        ...this.state.pagination,
+        itemCountPerPage
+      }
+    })
+  }
+
+  componentDidMount = () => {
+    this.filltemCountPerPage()
+  }
+
+  render() {
+    const { classes } = this.props
+    const { pagination } = this.state
     return (  
-      <Grid container className={classes.paginationRoot} justify="center" alignItems="center">
-        {[1,2,3,4,5].map((i, d) => (
-          <Grid item >
-            <Grid container className={classes.paginationNumber} justify="center" alignItems="center">
-              <Grid item>
-                <span className={classes.paginationNumberText}>{d + 1}</span>
+      <Grid container className={classes.paginationRoot} justify="center" alignItems="center"> 
+        {this.state.pagination.itemCountPerPage.map((d) => (
+           d - pagination.activePage <= 2 && d - pagination.activePage >= -2 ? (
+            <Grid item >
+              <Grid container  style={pagination.activePage === d ? {backgroundColor: "#d4d4d4"}: {}} onClick={() => this.handleActivePage(d)} className={classes.paginationNumber} justify="center" alignItems="center">
+                <Grid item>
+                  <span className={classes.paginationNumberText}>{d}</span>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
+           ) : null
         ))}
-        <Grid item>
-          <Grid container>
-            <Grid item><div className={classes.dot}/></Grid>
-            <Grid item><div className={classes.dot}/></Grid>
-            <Grid item><div className={classes.dot}/></Grid>
-          </Grid>
-        </Grid>
-        <Grid item >
-            <Grid container className={classes.paginationNumber} justify="center" alignItems="center">
-              <Grid item>
-                <span className={classes.paginationNumberText}>99</span>
-              </Grid>
-            </Grid>
-          </Grid>
       </Grid>
     )
+  }
 }
 
 const styles = {
@@ -54,9 +84,6 @@ const styles = {
     "&:hover": {
       backgroundColor: "#d4d4d4",
     }
-  },
-  paginationNumberText: {
-    // color: "white"
   }
 }
 

@@ -5,51 +5,29 @@ import Dot from './Dot'
 import Tag from './Tag'
 
 class PostDetail extends React.Component{
-
-  state = {
-    window: {
-      height: 0,
-      width: 0
-    }
-  }
-
-  componentDidMount = () => {
-    this.handleResize()
-    window.addEventListener('resize', this.handleResize)
-  }
-
-  handleResize = () => {
-    this.setState({
-      window: {
-        height: window.innerHeight,
-        width: window.innerWidth
-      }
-    })
-  }
-
   render() {
     const {classes} = this.props
     return (
       <Grid container className={classes.postDetailRoot}>
         <Grid item className={classes.postDetailTitleImageRoot}>
-          <img className={classes.postDetailTitleImage} src="https://i.pinimg.com/originals/8f/d3/c4/8fd3c464bf35e59e6294ab3837c22ba7.jpg" alt="new"/>
+          <img className={classes.postDetailTitleImage} src={this.props.image} alt="new"/>
         </Grid>
         <Grid item>
           <div>
-            <h2 className={classes.postDetailTitle}>Hello, iam web developer</h2>
-            <Tag />
+            <h2 className={classes.postDetailTitle}>{this.props.title}</h2>
+            <Tag tag={this.props.tag} />
             <Grid container className={classes.postInfo} alignItems="center">
               <Grid item>
-                <p className={classes.postDate}>11 jan 2000  </p>
+                <p className={classes.postDate}>{this.props.createdAt}</p>
               </Grid>
               <Grid item>
                 <Dot />
               </Grid>
               <Grid item>
-                <p className={classes.postReadTime}>5 min</p>
+                <p className={classes.postReadTime}>{this.props.readingTime}</p>
               </Grid>
           </Grid>
-            <p className={classes.postDetailContent}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+            <p className={classes.postDetailContent}>{this.props.content}</p>
           </div>
         </Grid>
       </Grid>

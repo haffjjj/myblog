@@ -6,14 +6,43 @@ import Grid from '@material-ui/core/Grid'
 import AppBar from '../components/AppBar'
 import PostDetailComponent from '../components/PostDetail'
 
+import postDetail from '../postDetail'
+
 class PostDetail extends React.Component{
+
+  state = {
+    postDetail: {
+      title: '',
+      image: '',
+      tag: [],
+      createdAt: '',
+      readingTime: '',
+      content: ''
+    }
+  }
+
+  componentDidMount = async ()=> {
+    this.setState({
+      postDetail
+    })
+  }
+  
   render(){
     const { classes } = this.props
+    const { postDetail } = this.state
+    console.log(this.state)
     return (  
       <Grid className={classes.root}>
         <AppBar />
         <div className={classes.postDetailWrapper}>
-          <PostDetailComponent />
+          <PostDetailComponent
+            title={postDetail.title}
+            image={postDetail.image}
+            tag={postDetail.tag}
+            createdAt={postDetail.createdAt}
+            readingTime={postDetail.readingTime}
+            content={postDetail.content}
+          />
         </div>
       </Grid>
     )

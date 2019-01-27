@@ -6,8 +6,25 @@ import Post from '../components/Post'
 import Pagination from '../components/Pagination'
 import Filter from '../components/Filter'
 import Line from '../components/Line'
+// import Pagination from "react-js-pagination"
+
+import posts from '../posts'
 
 class Home extends React.Component{
+
+  state = {
+    posts: {
+      data: [],
+      count: 0
+    }
+  }
+
+  componentDidMount = async ()=> {
+    this.setState({
+      posts
+    })
+  }
+
   render(){
     const { classes } = this.props
     return (  
@@ -17,13 +34,28 @@ class Home extends React.Component{
           <div className={classes.filterWrapper}><Filter /></div>
           <Line />
           <div className={classes.postWrapper}>
-            {[1,2,3,4,5].map(() => (
+            {this.state.posts.data.map((data) => (
             <div className={classes.post}>
-              <Post redirect="/post"/>
+              <Post 
+                redirect="/post"
+                title={data.title}
+                thumbnail={data.thumbnail}
+                tag={data.tag}
+                createdAt={data.createdAt}
+                readingTime={data.readingTime}
+                content={data.content}
+              />
             </div>
             ))}
           </div>
-          <Pagination />
+          <Pagination count={this.state.posts.count} />
+          {/* <Pagination
+            // activePage={this.state.activePage}
+            itemsCountPerPage={10}
+            totalItemsCount={450}
+            pageRangeDisplayed={5}
+            // onChange={}
+          /> */}
         </div>
       </Grid>
     )

@@ -6,10 +6,10 @@ const Tag = (props) => {
   const {classes} = props
   return (
     <Grid container>
-      {['#tutorial','#coding','#curhat'].map((d) => (
+      {props.tag.map((d) => (
         <Grid item>
           <div className={classes.postTag}>
-            <p className={classes.postTagTitle}>{d}</p>
+            <p className={classes.postTagTitle}>#{d}</p>
           </div>
         </Grid>
       ))}

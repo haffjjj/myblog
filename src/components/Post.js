@@ -7,27 +7,6 @@ import Tag from './Tag'
 
 
 class Post extends React.Component{
-
-  state = {
-    window: {
-      height: 0,
-      width: 0
-    }
-  }
-
-  componentDidMount = () => {
-    this.handleResize()
-  }
-
-  handleResize = () => {
-    this.setState({
-      window: {
-        height: window.innerHeight,
-        width: window.innerWidth
-      }
-    })
-  }
-
   render(){
     const { classes } = this.props
     return (  
@@ -35,26 +14,26 @@ class Post extends React.Component{
         <Grid item md={3} className={classes.postThumbnailRoot}>
           <Link to={this.props.redirect}>
             <div className={classes.postThumbnailWrapper}>
-              <img className={classes.postThumbnail} src="https://i.pinimg.com/originals/8f/d3/c4/8fd3c464bf35e59e6294ab3837c22ba7.jpg" alt="post"/>
+              <img className={classes.postThumbnail} src={this.props.thumbnail} alt="post"/>
             </div>
           </Link>
         </Grid>
         <Grid item md={9} className={classes.postMain}>
           <div>
             <Link className={classes.postTitleLink} to={this.props.redirect}>
-              <h2 className={classes.postTitle}>Hello Lorem</h2>
+              <h2 className={classes.postTitle}>{this.props.title}</h2>
             </Link>
-            <Tag />
-            <p className={classes.postContent}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+            <Tag tag={this.props.tag} />
+            <p className={classes.postContent}>{this.props.content}</p>
             <Grid container className={classes.postInfo} alignItems="center">
                 <Grid item>
-                  <p className={classes.postDate}>11 jan 2000  </p>
+                  <p className={classes.postDate}>{this.props.createdAt}</p>
                 </Grid>
                 <Grid item>
                   <Dot />
                 </Grid>
                 <Grid item>
-                  <p className={classes.postReadTime}>5 min</p>
+                  <p className={classes.postReadTime}>{this.props.readingTime}</p>
                 </Grid>
             </Grid>
           </div>
