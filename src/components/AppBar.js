@@ -12,7 +12,9 @@ const AppBar = (props) => {
             <Grid container>
               <Grid item md={3} sm={12} xs={12}>
                 <Grid item >
-                  <h3 className={classes.appBarTitleText}>Syafie.id</h3>
+                  <Link to={props.title.redirect} className={classes.link}>
+                    <h3 className={classes.appBarTitleText}>{props.title.title}</h3>
+                  </Link>
                 </Grid>
               </Grid>
 
@@ -20,7 +22,7 @@ const AppBar = (props) => {
                 <Grid className={classes.appBarMainRoot} container alignItems="center" justify="flex-end">
                   <Grid item className={classes.appBarMainWrapper}>
                     {props.menu.map((d) => 
-                      <Link to={d.redirect}>
+                      <Link to={d.redirect} className={classes.link}>
                         <Button className={classes.appBarMainButton} color="primary">{d.title}</Button>
                       </Link>
                     )}
@@ -71,6 +73,10 @@ const styles = theme => ({
   },
   linearProgressBarColorPrimary: {
     backgroundColor: "#545454"
+  },
+  link: {
+    textDecoration: "none",
+    color: "white"
   }
 })
 

@@ -15,15 +15,32 @@ class Home extends React.Component{
       data: [],
       count: 0
     },
-    page: 1,
+    pagination: {
+      activePage: 1,
+      redirect: '/'
+    },
+    tag: null,
     isLoading: true
   }
 
-  componentDidMount = async ()=> {
+  getPosts = () => {
     this.setState({
       posts,
-      isLoading: false,
-      page: parseInt(this.props.match.params.page) || 1
+      isLoading: false
+    })
+  }
+
+  componentWillMount = async ()=> {
+    const { tag } = this.props.match.params
+
+    this.getPosts()
+    
+    this.setState({
+      pagination: {
+        activePage: parseInt(this.props.match.params.page) || 1,
+        redirect: tag !== undefined ? `/tag/${tag}/` : `/`
+      },
+      tag: tag !== undefined ? tag : null
     })
   }
 
@@ -52,9 +69,10 @@ class Home extends React.Component{
               ))}
             </div>
             <Pagination 
-              activePage={this.state.page}
+              activePage={this.state.pagination.activePage}
               perPage={5}
               totalItemCount={count}
+              redirect={this.state.pagination.redirect}
             />
           </div>
         ): <p>Loading ... </p>}

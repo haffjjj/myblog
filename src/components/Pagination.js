@@ -10,7 +10,8 @@ class Pagination extends React.Component{
       activePage: 0,
       itemCountPerPage: [],
       perPage: 0,
-      totalItemCount: 0
+      totalItemCount: 0,
+      redirect: '/'
     }
   }
 
@@ -40,13 +41,15 @@ class Pagination extends React.Component{
   }
 
   componentDidMount = async () => {
-    const { activePage, perPage, totalItemCount } = this.props
+    console.log(this.props)
+    const { activePage, perPage, totalItemCount, redirect } = this.props
     await this.setState({
       pagination: {
         activePage,
         itemCountPerPage: [],
         perPage,
-        totalItemCount
+        totalItemCount,
+        redirect
       }
     })
     this.filltemCountPerPage()
@@ -59,7 +62,7 @@ class Pagination extends React.Component{
       <Grid container className={classes.paginationRoot} justify="center" alignItems="center"> 
         {this.state.pagination.itemCountPerPage.map((d) => (
            d - pagination.activePage <= 2 && d - pagination.activePage >= -2 ? (
-            <Link key={d} to={d === 1 ? `/` : `/page/${d}`} className={classes.paginationLink}>
+            <Link key={d} to={d === 1 ? `${pagination.redirect}` : `${pagination.redirect}page/${d}`} className={classes.paginationLink}>
               <Grid item>
                 <Grid container style={pagination.activePage === d ? {backgroundColor: "#d4d4d4"}: {}} onClick={() => this.handleActivePage(d)} className={classes.paginationNumber} justify="center" alignItems="center">
                   <Grid item>

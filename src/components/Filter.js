@@ -1,6 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import { Link } from 'react-router-dom'
 
 const Filter = (props) => {
   const {classes} = props
@@ -9,12 +10,14 @@ const Filter = (props) => {
       {/* <Grid>
         <p className={classes.postTagFilterTitle}>Filter : </p>
       </Grid> */}
-      {['#tutorial','#coding', 'javascript'].map((d) => (
-        <Grid key={d}>
-          <div key={d} className={classes.postTag}>
-            <p className={classes.postTagTitle}>{d}</p>
-          </div>
-        </Grid>
+      {['tutorial','coding', 'javascript'].map((d) => (
+        <Link to={`/tag/${d}`} className={classes.link}>
+          <Grid key={d}>
+            <div key={d} className={classes.postTag}>
+              <p className={classes.postTagTitle}>#{d}</p>
+            </div>
+          </Grid>
+        </Link>
       ))}
     </Grid>
   )
@@ -38,6 +41,10 @@ const styles = {
   postTagTitle: {
     fontSize: "20px"
   },
+  link: {
+    textDecoration: "none",
+    color: "#1b1b1b"
+  }
 }
 
 export default withStyles(styles)(Filter)

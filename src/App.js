@@ -15,10 +15,16 @@ const AppRouter = () => (
             redirect: "/"
           }
         ]}
+        title={{
+          title: "SYAFIE.ID",
+          redirect: "/"
+        }}
       />
-      
+
       <Route path="/" exact component={Home} />
       <Route path="/page/:page" exact component={Home} />
+      <Route path="/tag/:tag" exact component={Home} />
+      <Route path="/tag/:tag/page/:page" exact component={Home} />
       <Route path="/post" component={PostDetail} />
 
     </div>
