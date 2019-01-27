@@ -5,8 +5,10 @@ import PostDetail from './pages/PostDetail'
 import "./app.css"
 import AppBar from './components/AppBar'
 
+import { createBrowserHistory } from 'history'
+
 const AppRouter = () => (
-  <Router>
+  <Router history={createBrowserHistory}>
     <div>
       <AppBar
         menu={[
