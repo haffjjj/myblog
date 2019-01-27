@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import Home from './pages/Home'
 import PostDetail from './pages/PostDetail'
-
 import "./app.css"
 
 const AppRouter = () => (
@@ -24,7 +23,7 @@ const AppRouter = () => (
       </nav> */}
 
       <Route path="/" exact component={Home} />
-      {/* <Route path="/" exact component={Testing} /> */}
+      <Route path="/page/:page" exact component={Home} />
       <Route path="/post" component={PostDetail} />
 
     </div>

@@ -7,6 +7,11 @@ import Tag from './Tag'
 
 
 class Post extends React.Component{
+
+  componentDidMount = () => {
+    console.log(this.props)
+  }
+
   render(){
     const { classes } = this.props
     return (  

@@ -1,15 +1,16 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import { Link } from 'react-router-dom'
 
 class Pagination extends React.Component{
 
   state = {
     pagination: {
-      activePage: 1,
+      activePage: 0,
       itemCountPerPage: [],
-      perPage: 5,
-      totalItemCount: 50
+      perPage: 0,
+      totalItemCount: 0
     }
   }
 
@@ -38,7 +39,16 @@ class Pagination extends React.Component{
     })
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
+    const { activePage, perPage, totalItemCount } = this.props
+    await this.setState({
+      pagination: {
+        activePage,
+        itemCountPerPage: [],
+        perPage,
+        totalItemCount
+      }
+    })
     this.filltemCountPerPage()
   }
 
@@ -49,13 +59,15 @@ class Pagination extends React.Component{
       <Grid container className={classes.paginationRoot} justify="center" alignItems="center"> 
         {this.state.pagination.itemCountPerPage.map((d) => (
            d - pagination.activePage <= 2 && d - pagination.activePage >= -2 ? (
-            <Grid item >
-              <Grid container  style={pagination.activePage === d ? {backgroundColor: "#d4d4d4"}: {}} onClick={() => this.handleActivePage(d)} className={classes.paginationNumber} justify="center" alignItems="center">
-                <Grid item>
-                  <span className={classes.paginationNumberText}>{d}</span>
+            <Link to={`/page/${d}`} class={classes.paginationLink}>
+              <Grid item>
+                <Grid container style={pagination.activePage === d ? {backgroundColor: "#d4d4d4"}: {}} onClick={() => this.handleActivePage(d)} className={classes.paginationNumber} justify="center" alignItems="center">
+                  <Grid item>
+                    <p>{d}</p>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
+            </Link>
            ) : null
         ))}
       </Grid>
@@ -84,6 +96,10 @@ const styles = {
     "&:hover": {
       backgroundColor: "#d4d4d4",
     }
+  },
+  paginationLink: {
+    textDecoration: "none",
+    color: "#1b1b1b"
   }
 }
 
