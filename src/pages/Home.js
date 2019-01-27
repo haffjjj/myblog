@@ -1,7 +1,6 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-import AppBar from '../components/AppBar'
 import Post from '../components/Post'
 import Pagination from '../components/Pagination'
 import Filter from '../components/Filter'
@@ -31,32 +30,30 @@ class Home extends React.Component{
   render(){
     const { classes } = this.props
     const { count } = this.state.posts
-    const { params } = this.props.match
     return (  
-      <Grid className={classes.root}>
-        <AppBar />
+      <Grid className={classes.root} >
         {this.state.isLoading === false ? (
-          <div className={classes.wrapper}>
+            <div className={classes.wrapper}>
             <div className={classes.filterWrapper}><Filter /></div>
             <Line />
             <div className={classes.postWrapper}>
-              {this.state.posts.data.map((data) => (
-              <div className={classes.post}>
+              {this.state.posts.data.map((d) => (
+              <div key={d} className={classes.post}>
                 <Post 
                   redirect="/post"
-                  title={data.title}
-                  thumbnail={data.thumbnail}
-                  tag={data.tag}
-                  createdAt={data.createdAt}
-                  readingTime={data.readingTime}
-                  content={data.content}
+                  title={d.title}  
+                  thumbnail={d.thumbnail}
+                  tag={d.tag}
+                  createdAt={d.createdAt}
+                  readingTime={d.readingTime}
+                  content={d.content}
                 />
               </div>
               ))}
             </div>
             <Pagination 
               activePage={this.state.page}
-              perPage={10}
+              perPage={5}
               totalItemCount={count}
             />
           </div>

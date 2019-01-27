@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Dot from './Dot'
 import Tag from './Tag'
+import moment from 'moment'
 
 class PostDetail extends React.Component{
   render() {
@@ -18,7 +19,7 @@ class PostDetail extends React.Component{
             <Tag tag={this.props.tag} />
             <Grid container className={classes.postInfo} alignItems="center">
               <Grid item>
-                <p className={classes.postDate}>{this.props.createdAt}</p>
+                <p className={classes.postDate}>{moment.unix(this.props.createdAt).format("DD MMM YY")}</p>
               </Grid>
               <Grid item>
                 <Dot />

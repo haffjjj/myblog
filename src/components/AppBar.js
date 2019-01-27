@@ -2,6 +2,7 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 const AppBar = (props) => {
   const {classes} = props
@@ -18,9 +19,11 @@ const AppBar = (props) => {
               <Grid item md={9} sm={12} xs={12}>
                 <Grid className={classes.appBarMainRoot} container alignItems="center" justify="flex-end">
                   <Grid item className={classes.appBarMainWrapper}>
-                    <Button className={classes.appBarMainButton} color="primary">Home</Button>
-                    <Button className={classes.appBarMainButton} color="primary">Portofolio</Button>
-                    <Button className={classes.appBarMainButton} color="primary">About</Button>
+                    {props.menu.map((d) => 
+                      <Link to={d.redirect}>
+                        <Button className={classes.appBarMainButton} color="primary">{d.title}</Button>
+                      </Link>
+                    )}
                   </Grid>
                 </Grid>
               </Grid>
@@ -71,4 +74,4 @@ const styles = theme => ({
   }
 })
 
-export default withStyles(styles)(AppBar);
+export default withStyles(styles)(AppBar)

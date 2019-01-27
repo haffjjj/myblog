@@ -3,7 +3,6 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
-import AppBar from '../components/AppBar'
 import PostDetailComponent from '../components/PostDetail'
 
 import postDetail from '../postDetail'
@@ -30,10 +29,8 @@ class PostDetail extends React.Component{
   render(){
     const { classes } = this.props
     const { postDetail } = this.state
-    console.log(this.state)
     return (  
       <Grid className={classes.root}>
-        <AppBar />
         <div className={classes.postDetailWrapper}>
           <PostDetailComponent
             title={postDetail.title}

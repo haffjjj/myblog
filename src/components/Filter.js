@@ -10,8 +10,8 @@ const Filter = (props) => {
         <p className={classes.postTagFilterTitle}>Filter : </p>
       </Grid> */}
       {['#tutorial','#coding', 'javascript'].map((d) => (
-        <Grid>
-          <div className={classes.postTag}>
+        <Grid key={d}>
+          <div key={d} className={classes.postTag}>
             <p className={classes.postTagTitle}>{d}</p>
           </div>
         </Grid>

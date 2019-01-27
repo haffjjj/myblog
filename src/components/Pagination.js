@@ -59,7 +59,7 @@ class Pagination extends React.Component{
       <Grid container className={classes.paginationRoot} justify="center" alignItems="center"> 
         {this.state.pagination.itemCountPerPage.map((d) => (
            d - pagination.activePage <= 2 && d - pagination.activePage >= -2 ? (
-            <Link to={`/page/${d}`} class={classes.paginationLink}>
+            <Link key={d} to={d === 1 ? `/` : `/page/${d}`} className={classes.paginationLink}>
               <Grid item>
                 <Grid container style={pagination.activePage === d ? {backgroundColor: "#d4d4d4"}: {}} onClick={() => this.handleActivePage(d)} className={classes.paginationNumber} justify="center" alignItems="center">
                   <Grid item>

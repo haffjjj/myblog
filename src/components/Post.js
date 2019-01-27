@@ -4,12 +4,13 @@ import Grid from '@material-ui/core/Grid'
 import { Link } from 'react-router-dom'
 import Dot from './Dot'
 import Tag from './Tag'
+import moment from 'moment'
 
 
 class Post extends React.Component{
 
   componentDidMount = () => {
-    console.log(this.props)
+
   }
 
   render(){
@@ -32,7 +33,7 @@ class Post extends React.Component{
             <p className={classes.postContent}>{this.props.content}</p>
             <Grid container className={classes.postInfo} alignItems="center">
                 <Grid item>
-                  <p className={classes.postDate}>{this.props.createdAt}</p>
+                  <p className={classes.postDate}>{moment.unix(this.props.createdAt).format("DD MMM YY")}</p>
                 </Grid>
                 <Grid item>
                   <Dot />
