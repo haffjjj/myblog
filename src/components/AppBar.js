@@ -37,7 +37,7 @@ const AppBar = (props) => {
 
 const styles = theme => ({
   appBar: {
-    backgroundColor: "#1b1b1b",
+    backgroundColor: "#2f1b6b",
   },
   appBarRoot: {
     flexGrow: 1,

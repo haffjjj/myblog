@@ -41,7 +41,6 @@ class Pagination extends React.Component{
   }
 
   componentDidMount = async () => {
-    console.log(this.props)
     const { activePage, perPage, totalItemCount, redirect } = this.props
     await this.setState({
       pagination: {
@@ -64,9 +63,9 @@ class Pagination extends React.Component{
            d - pagination.activePage <= 2 && d - pagination.activePage >= -2 ? (
             <Link key={d} to={d === 1 ? `${pagination.redirect}` : `${pagination.redirect}page/${d}`} className={classes.paginationLink}>
               <Grid item>
-                <Grid container style={pagination.activePage === d ? {backgroundColor: "#d4d4d4"}: {}} onClick={() => this.handleActivePage(d)} className={classes.paginationNumber} justify="center" alignItems="center">
+                <Grid container style={pagination.activePage === d ? {backgroundColor: "#2f1b6b"}: {}} onClick={() => this.handleActivePage(d)} className={classes.paginationNumber} justify="center" alignItems="center">
                   <Grid item>
-                    <p>{d}</p>
+                    <p className={classes.text}>{d}</p>
                   </Grid>
                 </Grid>
               </Grid>
@@ -92,17 +91,21 @@ const styles = {
   paginationNumber: {
     height: "35px",
     width: "35px",
-    backgroundColor: "#f4f4f4",
+    backgroundColor: "#6749c1",
+    boxShadow: "0 0px 2px #6749c1",
     borderRadius: "5px",
     margin: "2px",
     cursor: "pointer",
     "&:hover": {
-      backgroundColor: "#d4d4d4",
+      backgroundColor: "#2f1b6b",
     }
   },
   paginationLink: {
     textDecoration: "none",
     color: "#1b1b1b"
+  },
+  text: {
+    color: "white"
   }
 }
 

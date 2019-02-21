@@ -28,22 +28,25 @@ const styles = {
     marginRight: "10px"
   },
   postTag: {
-    backgroundColor: "#f4f4f4",
-    marginRight: "5px",
+    backgroundColor: "#6749c1",
+    boxShadow: "0 0px 10px #6749c1",
+    marginRight: "5px", 
     padding: "2px 10px 2px 10px",
     borderRadius: "50px",
     cursor: "pointer",
     "&:hover": {
-      backgroundColor: "#d4d4d4",
+      backgroundColor: "#2f1b6b",
     },
     marginBottom: "10px"
   },
   postTagTitle: {
-    fontSize: "20px"
+    fontSize: "18px",
+    color: "white"
   },
   link: {
     textDecoration: "none",
-    color: "#1b1b1b"
+    color: "#1b1b1b",
+    marginTop: "30px"
   }
 }
 

@@ -56,22 +56,23 @@ const styles = {
   },
   postDetailTitle: {
     fontSize: "30px",
-    marginBottom: "5px"
+    marginBottom: "5px",
+    color: "#20124c"
   },
   postInfo: {
     marginTop: "10px",
   },
   postDate: {
     fontSize: "13px",
-    color: "#484848"
+    color: "#6b6b6b"
   },
   postReadTime: {
     fontSize: "13px",
-    color: "#484848"
+    color: "#6b6b6b"
   },
   postDetailContent: {
     marginTop: "20px",
-    color: "#484848"
+    color: "#20124c"
   },
   postDetailDate: {
     marginTop: "5px",

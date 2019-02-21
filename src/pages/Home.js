@@ -88,7 +88,6 @@ const styles = {
   wrapper: {
     maxWidth: "960px", 
     margin: "0 auto",
-    padding: "40px 10px 15px 10px",
   },
   filterWrapper: {
     marginBottom: "20px"

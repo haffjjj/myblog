@@ -22,18 +22,17 @@ const Tag = (props) => {
 
 const styles = {
   postTag: {
-    backgroundColor: "#d4d4d4",
-    marginRight: "5px",
-    padding: "2px 10px 2px 10px",
+    padding: "0px 10px 2px 0px",
     borderRadius: "50px",
     cursor: "pointer"
   },
   postTagTitle: {
-    fontSize: "13px"
+    fontSize: "13px",
+    fontWeight: "bold",
+    color: "#6b6b6b"
   },
   link: {
-    textDecoration: "none",
-    color: "#1b1b1b"
+    textDecoration: "none"
   }
 }
 

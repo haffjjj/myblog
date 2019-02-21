@@ -87,21 +87,22 @@ const styles = theme => ({
   postTitle: {
     fontSize: "25px",
     marginBottom: "5px",
+    color:"#20124c"
   },
   postContent: {
     marginTop: "10px",
-    color: "#484848"
+    color: "#20124c"
   },
   postInfo: {
     marginTop: "10px",
   },
   postDate: {
     fontSize: "13px",
-    color: "#484848"
+    color: "#6b6b6b"
   },
   postReadTime: {
     fontSize: "13px",
-    color: "#484848"
+    color: "#6b6b6b"
   },
   paginationRoot: {
     maxWidth: "960px", 
