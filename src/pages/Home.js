@@ -88,12 +88,13 @@ const styles = {
   wrapper: {
     maxWidth: "960px", 
     margin: "0 auto",
+    padding: "15px 10px 15px 10px"
   },
   filterWrapper: {
     marginBottom: "20px"
   },
   postWrapper: {
-    paddingTop: "20px"
+    paddingTop: "20px",
   },
   post: {
     marginBottom: "40px"
