@@ -8,7 +8,7 @@ const Tag = (props) => {
   return (
     <Grid container>
       {props.tag.map((d) => (
-        <Link to={`/tag/${d}`} className={classes.link}>
+        <Link to={`/tag/${d}/`} className={classes.link}>
           <Grid key={d} item>
             <div className={classes.postTag}>
               <p className={classes.postTagTitle}>#{d}</p>

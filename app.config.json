@@ -4,7 +4,7 @@
       "name"      : "myblog",
       "script"    : "npx",
       "interpreter": "none",
-      "args": "serve -p 80 build"
+      "args": "serve -p 3000 build"
     }
   ]
 }
