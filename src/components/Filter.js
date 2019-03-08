@@ -7,14 +7,11 @@ const Filter = (props) => {
   const {classes} = props
   return (
     <Grid container justify="center" alignItems="center" style={{overflow: "auto", whiteSpace: 'nowrap'}}>
-      {/* <Grid>
-        <p className={classes.postTagFilterTitle}>Filter : </p>
-      </Grid> */}
-      {['tutorial','coding', 'javascript'].map((d) => (
-        <Link to={`/tag/${d}`} className={classes.link}>
-          <Grid key={d}>
-            <div key={d} className={classes.postTag}>
-              <p className={classes.postTagTitle}>#{d}</p>
+      {props.filter.tags.map((d) => (
+        <Link to={`/tag/${d.tag}`} className={classes.link}>
+          <Grid>
+            <div className={classes.postTag}>
+              <p className={classes.postTagTitle}>#{d.tag}</p>
             </div>
           </Grid>
         </Link>

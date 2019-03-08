@@ -16,12 +16,28 @@ class Home extends React.Component{
       data: [],
       count: 0
     },
+    filter:{
+      tags: []
+    },
     pagination: {
       activePage: 1,
       redirect: '/'
     },
     tag: null,
     isLoading: true
+  }
+
+  getTags = async() => {
+    const tags = await axios({
+      method:'get',
+      url: `https://api.syafie.id/tags`
+    })
+
+    this.setState({
+      filter: {
+        tags: tags.data
+      }
+    })
   }
 
   getPosts = async () => {
@@ -46,7 +62,7 @@ class Home extends React.Component{
     })
 
     if(postsGroups.status !== 200){
-      alert("erros")
+      console.log("Error gayn")
     }
 
     this.setState({
@@ -67,6 +83,7 @@ class Home extends React.Component{
       isLoading: true
     })
 
+    this.getTags()
     this.getPosts()
   }
 
@@ -97,10 +114,12 @@ class Home extends React.Component{
     const { count } = this.state.posts
     return (  
       <Grid className={classes.root} >
-        {this.state.isLoading === false ? (
             <div className={classes.wrapper}>
-            <div className={classes.filterWrapper}><Filter /></div>
+
+            <div className={classes.filterWrapper}><Filter filter={this.state.filter} /></div>
             <Line />
+            
+        {this.state.isLoading === false ? (
             <div className={classes.postWrapper}>
               {this.state.posts.data.map((d) => (
               <div key={d} className={classes.post}>  
@@ -115,15 +134,16 @@ class Home extends React.Component{
                 />
               </div>
               ))}
-            </div>
-            <Pagination 
+              <Pagination 
               activePage={this.state.pagination.activePage}
               perPage={perPage}
               totalItemCount={count}
               redirect={this.state.pagination.redirect}
             />
-          </div>
+            </div>
         ): <p>Loading ... </p>}
+          </div>
+
       </Grid>
     )
   }
