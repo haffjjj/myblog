@@ -4,10 +4,11 @@ import Grid from '@material-ui/core/Grid'
 import Post from '../components/Post'
 import Pagination from '../components/Pagination'
 import Filter from '../components/Filter'
+import FilterLoading from '../components/FilterLoading'
 import Line from '../components/Line'
 import axios from 'axios'
 
-const perPage = 3
+const perPage = 1
 
 class Home extends React.Component{
 
@@ -24,28 +25,55 @@ class Home extends React.Component{
       redirect: '/'
     },
     tag: null,
-    isLoading: true
+    isLoading: {
+      posts: true,
+      filter: true
+    }
   }
 
   getTags = async() => {
-    const tags = await axios({
+
+    await this.setState({
+      isLoading: {
+        ...this.state.isLoading,
+        filter: true
+      }
+    })
+
+    let tags = await axios({
       method:'get',
       url: `https://api.syafie.id/tags`
     })
 
+    if(tags.status !== 200){
+      console.log("Error when get tags")
+      tags = this.state.tags
+    }
+
     this.setState({
       filter: {
         tags: tags.data
+      },
+      isLoading: {
+        ...this.state.isLoading,
+        filter: false
       }
     })
   }
 
   getPosts = async () => {
+
+    await this.setState({
+      isLoading: {
+        ...this.state.isLoading,
+        posts: true
+      }
+    })
+        
     const activePage = this.state.pagination.activePage
     
     const start = activePage > 1 ? perPage * ( activePage - 1) : 0
     const limit = perPage
-
     const tag = this.state.tag
 
     let url
@@ -56,32 +84,40 @@ class Home extends React.Component{
       url = `https://api.syafie.id/postsGroups?start=${start}&limit=${limit}`
     }
 
-    const postsGroups = await axios({
+    let postsGroups = await axios({
       method:'get',
       url
     })
 
     if(postsGroups.status !== 200){
-      console.log("Error gayn")
+      console.log("Error when get posts")
+      postsGroups = this.state.posts
     }
 
     this.setState({
       posts: postsGroups.data[0] || this.state.posts,
-      isLoading: false
+      isLoading: {
+        ...this.state.isLoading,
+        posts: false
+      }
+    })
+  }
+
+  initState = (props) => {
+    const { tag } = props.match.params
+
+    return this.setState({
+      pagination: {
+        activePage: parseInt(props.match.params.page) || 1,
+        redirect: tag !== undefined ? `/tag/${tag}/` : `/`
+      },
+      tag: tag !== undefined ? tag : null,
     })
   }
 
   componentWillMount = async ()=> {
-    const { tag } = this.props.match.params
 
-    await this.setState({
-      pagination: {
-        activePage: parseInt(this.props.match.params.page) || 1,
-        redirect: tag !== undefined ? `/tag/${tag}/` : `/`
-      },
-      tag: tag !== undefined ? tag : null,
-      isLoading: true
-    })
+    await this.initState(this.props)
 
     this.getTags()
     this.getPosts()
@@ -90,20 +126,7 @@ class Home extends React.Component{
   componentWillReceiveProps = async (nextProps) => {
     if(nextProps.match.params.page !== this.props.match.params.page || nextProps.match.params.tag !== this.props.match.params.tag){
 
-      const { tag, page } = nextProps.match.params
-
-      await this.setState({
-        posts: {
-          data: [],
-          count: 0
-        },
-        pagination: {
-          activePage: parseInt(page) || 1,
-          redirect: tag !== undefined ? `/tag/${tag}/` : `/`
-        },
-        tag: tag !== undefined ? tag : null,
-        isLoading: true
-      })
+      await this.initState(nextProps)
 
       this.getPosts()
     }
@@ -114,14 +137,20 @@ class Home extends React.Component{
     const { count } = this.state.posts
     return (  
       <Grid className={classes.root} >
-            <div className={classes.wrapper}>
+        <div className={classes.wrapper}>
 
-            <div className={classes.filterWrapper}><Filter filter={this.state.filter} /></div>
-            <Line />
-            
-        {this.state.isLoading === false ? (
-            <div className={classes.postWrapper}>
-              {this.state.posts.data.map((d) => (
+          <div className={classes.filterWrapper}>
+          {this.state.isLoading.filter === false ? (
+            <Filter filter={this.state.filter} />
+          ): <FilterLoading />}
+
+          </div>
+
+        <Line />
+        <div className={classes.postWrapper}>
+        {this.state.isLoading.posts === false ? (
+          <div>
+            {this.state.posts.data.map((d) => (
               <div key={d} className={classes.post}>  
                 <Post 
                   redirect="/post"
@@ -132,17 +161,20 @@ class Home extends React.Component{
                   readingTime={d.readingTime}
                   content={d.content}
                 />
-              </div>
-              ))}
-              <Pagination 
+            </div>
+            ))}
+            <Pagination 
               activePage={this.state.pagination.activePage}
               perPage={perPage}
               totalItemCount={count}
               redirect={this.state.pagination.redirect}
             />
-            </div>
-        ): <p>Loading ... </p>}
           </div>
+        ): <p>Loading ...</p>}
+            
+          </div>
+
+        </div>
 
       </Grid>
     )

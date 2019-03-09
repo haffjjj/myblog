@@ -21,20 +21,18 @@ const Filter = (props) => {
 }
 
 const styles = { 
-  postTagFilterTitle: {
-    marginRight: "10px"
-  },
   postTag: {
     backgroundColor: "#6749c1",
     boxShadow: "0 0px 10px #6749c1",
-    marginRight: "5px", 
+    margin: "3px", 
     padding: "2px 10px 2px 10px",
     borderRadius: "50px",
     cursor: "pointer",
     "&:hover": {
       backgroundColor: "#2f1b6b",
     },
-    marginBottom: "10px"
+    marginBottom: "10px",
+    marginTop: "10px"
   },
   postTagTitle: {
     fontSize: "18px",
@@ -42,8 +40,7 @@ const styles = {
   },
   link: {
     textDecoration: "none",
-    color: "#1b1b1b",
-    marginTop: "30px"
+    color: "#1b1b1b"
   }
 }
 
